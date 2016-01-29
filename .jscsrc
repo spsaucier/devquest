@@ -43,7 +43,6 @@
   ],
   "requireDotNotation": true,
   "requireLineFeedAtFileEnd": true,
-  "requireMultipleVarDecl": "onevar",
   "requireOperatorBeforeLineBreak": [
     "?",
     "=",

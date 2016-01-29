@@ -1,2 +1,4 @@
-h2 locations
-p {{locations.ctrlName}}
+h2 Locations
+div(ng-init="getLocations()")
+	div(ng-repeat="location in locations")
+		h3(ng-bind="location.name")

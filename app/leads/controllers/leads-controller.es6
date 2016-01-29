@@ -2,9 +2,18 @@
   'use strict';
 
   class LeadsCtrl {
-    constructor($scope) {
-      $scope.leads = {};
-      $scope.leads.ctrlName = 'LeadsCtrl';
+    constructor($scope, GetData) {
+      $scope.getLeads = function () {
+        var promise = GetData.getLeads();
+        promise.then(
+          function (payload) {
+            $scope.leads = payload.data;
+          },
+          function (errorPayload) {
+              $log.error('Failure loading leads', errorPayload);
+          }
+        );
+      };
     }
   }
 

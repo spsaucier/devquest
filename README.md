@@ -11,6 +11,10 @@
 1. Run `bower install` to install client-side dependencies
 1. Use [generator-ng-poly](https://github.com/dustinspecker/generator-ng-poly) to create additional components
 
+## Database Server
+- Run `npm install -g json-server`
+- Run `json-server --watch --port=3002 ./database/generate.js` to start the database server and generate the data
+
 ## Gulp tasks
 - Run `gulp build` to compile assets
 - Run `gulp dev` to run the build task and setup the development environment

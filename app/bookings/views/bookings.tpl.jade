@@ -1,2 +1,4 @@
-h2 bookings
-p {{bookings.ctrlName}}
+h2 Bookings
+div(ng-init="getBookings()")
+	div(ng-repeat="booking in bookings")
+		h3(ng-bind="booking.name")

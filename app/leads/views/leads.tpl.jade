@@ -1,2 +1,4 @@
-h2 leads
-p {{leads.ctrlName}}
+h2 Leads
+div(ng-init="getLeads()")
+	div(ng-repeat="lead in leads")
+		h3(ng-bind="lead.name")

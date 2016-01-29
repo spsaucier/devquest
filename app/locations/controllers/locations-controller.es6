@@ -2,9 +2,18 @@
   'use strict';
 
   class LocationsCtrl {
-    constructor($scope) {
-      $scope.locations = {};
-      $scope.locations.ctrlName = 'LocationsCtrl';
+    constructor($scope, GetData) {
+      $scope.getLocations = function () {
+        var promise = GetData.getLocations();
+        promise.then(
+          function (payload) {
+            $scope.locations = payload.data;
+          },
+          function (errorPayload) {
+              $log.error('Failure loading locations', errorPayload);
+          }
+        );
+      };
     }
   }
 
