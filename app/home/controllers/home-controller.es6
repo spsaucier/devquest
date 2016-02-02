@@ -2,9 +2,7 @@
   'use strict';
 
   class HomeCtrl {
-    constructor($scope) {
-      $scope.home = {};
-      $scope.home.ctrlName = 'HomeCtrl';
+    constructor() {
     }
   }
 

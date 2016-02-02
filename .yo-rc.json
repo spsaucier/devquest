@@ -1,7 +1,7 @@
 {
   "generator-ng-poly": {
     "appScript": "es6",
-    "controllerAs": false,
+    "controllerAs": true,
     "directiveTemplateUrl": true,
     "e2eTestFramework": "jasmine",
     "markup": "jade",

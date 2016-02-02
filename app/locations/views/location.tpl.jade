@@ -1,0 +1,10 @@
+div(ng-init="location.getLocation()")
+	h2 {{location.data.name}}
+	p 
+		a(href="{{location.data.website}}" target="_blank") Website
+	h4 Details
+	p {{location.data.details}}
+	address
+		h4 Address
+		p {{location.data.address.streetAddress}}
+		p {{location.data.address.city}} {{location.data.address.state}}, {{location.data.address.zip}}

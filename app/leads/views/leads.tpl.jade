@@ -1,4 +1,4 @@
 h2 Leads
-div(ng-init="getLeads()")
-	div(ng-repeat="lead in leads")
+div(ng-init="leads.getLeads()")
+	div(ng-repeat="lead in leads.data")
 		h3(ng-bind="lead.name")

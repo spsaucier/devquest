@@ -13,15 +13,19 @@
     .factory('GetData', GetData);
 
   function GetData($http) {
-    let GetDataBase = {};
+    let GetDataBase = {},
+        base = 'http://localhost:3002';
     GetDataBase.getLocations = () => {
-      return $http.get('http://localhost:3002/locations/');
+      return $http.get(base + '/locations/');
+    };
+    GetDataBase.getLocation = (id) => {
+      return $http.get(base + '/locations/' + id);
     };
     GetDataBase.getBookings = () => {
-      return $http.get('http://localhost:3002/bookings/');
+      return $http.get(base + '/bookings/');
     };
     GetDataBase.getLeads = () => {
-      return $http.get('http://localhost:3002/leads/');
+      return $http.get(base + '/leads/');
     };
     return GetDataBase;
   }

@@ -10,7 +10,14 @@
       .state('locations', {
         url: '/locations',
         templateUrl: 'locations/views/locations.tpl.html',
-        controller: 'LocationsCtrl'
+        controller: 'LocationsCtrl',
+        controllerAs: 'locations'
+      })
+      .state('location', {
+        url: '/locations/:id',
+        templateUrl: 'locations/views/location.tpl.html',
+        controller: 'LocationCtrl',
+        controllerAs: 'location'
       });
   }
 }());

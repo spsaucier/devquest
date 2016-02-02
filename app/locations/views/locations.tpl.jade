@@ -1,4 +1,5 @@
 h2 Locations
-div(ng-init="getLocations()")
-	div(ng-repeat="location in locations")
-		h3(ng-bind="location.name")
+div(ng-init="locations.getLocations()")
+	div(ng-repeat="location in locations.data")
+		a(data-ui-sref="location({ id: location.id })")
+			h3(ng-bind="location.name")

@@ -1,8 +1,27 @@
-@import url(https://fonts.googleapis.com/css?family=Creepster);
-
 .creepy
 	font-family 'Creepster', sans-serif
 	font-size 21vw
 	text-align center
+	animation float 5s ease-in-out infinite
 	@media (min-width: 1200px)
 		font-size 20em
+
+@keyframes float
+	50%
+		transform translate(0, 20px)
+
+@css {
+	@font-face {
+		font-family: 'Creepster';
+		font-weight: 400;
+		font-style: normal;
+		src: url('../../../fonts/Creepster-regular/Creepster-regular.eot');
+		src: url('../../../fonts/Creepster-regular/Creepster-regular.eot?#iefix') format('embedded-opentype'),
+			local('Creepster'),
+			local('Creepster-regular'),
+			url('../../../fonts/Creepster-regular/Creepster-regular.woff2') format('woff2'),
+			url('../../../fonts/Creepster-regular/Creepster-regular.woff') format('woff'),
+			url('../../../fonts/Creepster-regular/Creepster-regular.ttf') format('truetype'),
+			url('../../../fonts/Creepster-regular/Creepster-regular.svg#Creepster') format('svg');
+	}
+}

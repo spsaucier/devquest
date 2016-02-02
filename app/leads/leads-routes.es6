@@ -10,7 +10,8 @@
       .state('leads', {
         url: '/leads',
         templateUrl: 'leads/views/leads.tpl.html',
-        controller: 'LeadsCtrl'
+        controller: 'LeadsCtrl',
+        controllerAs: 'leads'
       });
   }
 }());

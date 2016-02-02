@@ -10,7 +10,8 @@
       .state('home', {
         url: '/',
         templateUrl: 'home/views/home.tpl.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        controllerAs: 'home'
       });
   }
 }());

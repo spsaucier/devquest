@@ -1,4 +1,4 @@
 h2 Bookings
-div(ng-init="getBookings()")
-	div(ng-repeat="booking in bookings")
+div(ng-init="bookings.getBookings()")
+	div(ng-repeat="booking in bookings.data")
 		h3(ng-bind="booking.name")

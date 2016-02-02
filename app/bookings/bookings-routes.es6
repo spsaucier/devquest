@@ -10,7 +10,8 @@
       .state('bookings', {
         url: '/bookings',
         templateUrl: 'bookings/views/bookings.tpl.html',
-        controller: 'BookingsCtrl'
+        controller: 'BookingsCtrl',
+        controllerAs: 'bookings'
       });
   }
 }());

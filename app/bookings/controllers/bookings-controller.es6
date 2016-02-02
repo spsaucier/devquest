@@ -2,15 +2,17 @@
   'use strict';
 
   class BookingsCtrl {
-    constructor($scope, GetData) {
-      $scope.getBookings = function () {
+    constructor(GetData, $log) {
+      var vm = this;
+
+      vm.getBookings = function () {
         var promise = GetData.getBookings();
         promise.then(
           function (payload) {
-            $scope.bookings = payload.data;
+            vm.data = payload.data;
           },
           function (errorPayload) {
-              $log.error('Failure loading bookings', errorPayload);
+            $log.error('Failure loading bookings', errorPayload);
           }
         );
       };

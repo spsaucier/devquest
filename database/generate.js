@@ -28,8 +28,7 @@ module.exports = function () {
     data.locations.push({
       id: i,
       name: faker.company.companyName() + ' ' + _.sample(locationType),
-      details: faker.company.bs(),
-      logo: faker.image.business(),
+      details: faker.lorem.paragraphs(),
       website: faker.internet.url(),
       address: {
         streetAddress: faker.address.streetAddress(),
