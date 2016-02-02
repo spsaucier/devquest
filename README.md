@@ -16,10 +16,11 @@
 1. Use [generator-ng-poly](https://github.com/dustinspecker/generator-ng-poly) to create additional components
 
 ## Database Server
-- Run `npm install -g json-server`
-- Run `json-server --watch --port=3002 ./database/generate.js` to start the database server and generate the data
+1. Run `npm install -g json-server`
+1. Run `json-server --watch --port=3002 ./database/generate.js` to start the database server and generate the data
 
 ## Gulp tasks
+- Run `gulp` to compile assets and watch your files
 - Run `gulp build` to compile assets
 - Run `gulp dev` to run the build task and setup the development environment
 - Run `gulp unitTest` to run unit tests via Karma and to create code coverage reports
