@@ -16,6 +16,8 @@ html(lang='en' data-ng-app='devQuest')
 
     .navbar.navbar-inverse(role='navigation')
       .container
+        .navbar-right
+          img.hidden-xs(src="/images/gather-white.svg" width="160" style="margin-top: 6px;")
         .navbar-header
           button.navbar-toggle.collapsed(type='button' data-ng-init='navCollapsed = true' data-ng-click='navCollapsed = !navCollapsed')
             span.sr-only Toggle Navigation
