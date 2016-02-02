@@ -12,6 +12,12 @@
         templateUrl: 'leads/views/leads.tpl.html',
         controller: 'LeadsCtrl',
         controllerAs: 'leads'
+      })
+      .state('lead', {
+        url: '/lead/:id',
+        templateUrl: 'leads/views/lead.tpl.html',
+        controller: 'LeadCtrl',
+        controllerAs: 'lead'
       });
   }
 }());

@@ -22,10 +22,16 @@
       return $http.get(base + '/locations/' + id);
     };
     GetDataBase.getBookings = () => {
-      return $http.get(base + '/bookings/');
+      return $http.get(base + '/bookings/?_sort=start&_order=ASC');
+    };
+    GetDataBase.getBooking = (id) => {
+      return $http.get(base + '/bookings/' + id);
     };
     GetDataBase.getLeads = () => {
-      return $http.get(base + '/leads/');
+      return $http.get(base + '/leads/?_sort=start&_order=ASC');
+    };
+    GetDataBase.getLead = (id) => {
+      return $http.get(base + '/leads/' + id);
     };
     return GetDataBase;
   }

@@ -1,0 +1,16 @@
+div(ng-init="booking.getBooking()")
+	h2
+		span(ng-bind="booking.data.name")
+		span(class="badge color-{{booking.data.status}}"
+			ng-bind="booking.data.status")
+	p 
+		span Date: 
+		span(ng-bind="booking.data.start | moment: 'MMMM D, YYYY'")
+	p 
+		span Time: 
+		span(ng-bind="booking.data.start | moment:'h:mma'")
+		|  &ndash; 
+		span(ng-bind="booking.data.end | moment:'h:mma'")
+	p 
+		span # of Guests: 
+		span(ng-bind="booking.data.guests")

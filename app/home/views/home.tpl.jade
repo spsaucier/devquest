@@ -1,23 +1,51 @@
 h2.creepy Dev Quest
-p Your QUEST is to fulfill one or more of the following challenges:
+p Your 
+	a(class="tip")
+		span(class="tip-hover") quest
+		span(class="tip-content")
+			img(src="https://media.giphy.com/media/Lq2OE4LOnrvTq/giphy.gif")
+	|  is to battle one or more of the following terrible beasts:
 ul
-	li Create a Lead Detail page wherein a user can view a specific Lead's data and the associated Location
-		br
-		small BONUS: Add the ability to update a lead's details from that screen
-	li Update the Booking API endpoint to include its Location's data when a booking's data is requested
-		br
-		small BONUS: From the Booking page, link to the Location's details page
-	li Implement paging on Bookings and Leads
-		br
-		small BONUS: Infinite scroll!
+	li 
+		| Add the ability to update &amp; save details from the single Booking / single Lead pages
+		span(class="badge alert-info") Front
+	li 
+		| On the Location details page, show and link to associated Leads and Bookings
+		span(class="badge alert-info") Front
+	li 
+		| Implement paging on Bookings and Leads list views 
+		small - BONUS: Infinite scroll
+		span(class="badge alert-info") Front
+	li 
+		| On the list of bookings, add the ability to filter by start date, status, and number of guests
+		span(class="badge alert-info") Front
+		span(class="badge alert-success") Back
+	li 
+		| Create a dashboard with useful (to the Event Planner users) information
+		span(class="badge alert-info") Front
+		span(class="badge alert-success") Back
+	li 
+		| Create a form for Lead submissions at a specific location
+		span(class="badge alert-info") Front
+		span(class="badge alert-success") Back
+	li 
+		| Add the ability to convert a Lead into a Booking
+		span(class="badge alert-info") Front
+		span(class="badge alert-success") Back
+	li 
+		| Develop automated tests for API requests
+		span(class="badge alert-success") Back
 
 p This application represents an extremely pared down version of the Gather venue app. It uses:
 ul
 	li ES6/Babel
 	li NPM/Gulp/LiveReload
 	li AngularJS
+	li Jasmine
 	li Jade templates
 	li Stylus stylesheets
 	li 
 		a(href="https://github.com/typicode/json-server" target="_blank") JSON Server
 		|  with LowDB database
+	li 
+		a(href="https://angular-ui.github.io/bootstrap/" target="_blank") Angular UI Bootstrap

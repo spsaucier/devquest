@@ -17,10 +17,10 @@ module.exports = function () {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   function getDate() {
-    return getRandomArbitrary(Date.now() - 31536000, Date.now() + 31536000);
+    return getRandomArbitrary(Date.now() - 31536000000, Date.now() + 31536000000);
   }
   function getFutureDate() {
-    return getRandomArbitrary(Date.now(), Date.now() + 31536000);
+    return getRandomArbitrary(Date.now(), Date.now() + 31536000000);
   }
   // Create 100 locations
   for (i = 1; i <= 100; i++) {
@@ -47,7 +47,7 @@ module.exports = function () {
       status: _.sample(statuses),
       guests: getRandomArbitrary(10, 300),
       start: start,
-      end: start + getRandomArbitrary(0, 576000),
+      end: start + getRandomArbitrary(0, 576000000),
       locationId: getRandomArbitrary(1, 100)
     });
   }

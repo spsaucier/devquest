@@ -5,6 +5,41 @@
 	animation float 5s ease-in-out infinite
 	@media (min-width: 1200px)
 		font-size 20em
+		
+.tip
+	position relative
+	.tip-hover
+		&:hover
+			&+.tip-content
+				display block
+	.tip-content
+		display none
+		background #eee
+		padding 5px
+		position absolute
+		
+.badge
+	vertical-align top
+	margin 0 5px
+	&+.badge
+		margin-left 0
+		
+[class*=color-]
+	&[class*=Confirmed]
+		background #9DE0AF
+		color #555
+	&[class*=Tentative]
+		background #FFF687
+		color #555
+	&[class*=Prospect]
+		background #E5E5E5
+		color #555
+	&[class*=Canceled]
+		background #FA8B79
+	&[class*=Closed]
+		background #AEB8C3
+	&[class*=Default]
+		background #000
 
 @keyframes float
 	50%

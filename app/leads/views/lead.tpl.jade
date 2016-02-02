@@ -1,0 +1,12 @@
+div(ng-init="lead.getLead()")
+	h2
+		span(ng-bind="lead.data.name")
+	p 
+		span Date: 
+		span(ng-bind="lead.data.start | moment: 'MMMM D, YYYY'")
+	p 
+		span Time: 
+		span(ng-bind="lead.data.start | moment:'h:mma'")
+	p 
+		span # of Guests: 
+		span(ng-bind="lead.data.guests")

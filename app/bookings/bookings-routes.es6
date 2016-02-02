@@ -12,6 +12,12 @@
         templateUrl: 'bookings/views/bookings.tpl.html',
         controller: 'BookingsCtrl',
         controllerAs: 'bookings'
+      })
+      .state('booking', {
+        url: '/booking/:id',
+        templateUrl: 'bookings/views/booking.tpl.html',
+        controller: 'BookingCtrl',
+        controllerAs: 'booking'
       });
   }
 }());

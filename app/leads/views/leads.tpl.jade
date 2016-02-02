@@ -1,4 +1,7 @@
 h2 Leads
 div(ng-init="leads.getLeads()")
 	div(ng-repeat="lead in leads.data")
-		h3(ng-bind="lead.name")
+		a(data-ui-sref="lead({ id: lead.id })")
+			div(class="pull-right" ng-bind="lead.start | moment: 'MMMM D, YYYY'")
+			h3
+				span(ng-bind="lead.name")

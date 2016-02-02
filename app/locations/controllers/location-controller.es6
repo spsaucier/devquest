@@ -7,10 +7,8 @@
 
       vm.getLocation = function () {
         var promise = GetData.getLocation($stateParams.id);
-        $log.info('Getting Location');
         promise.then(
           function (payload) {
-            $log.info('Success');
             vm.data = payload.data;
           },
           function (errorPayload) {
