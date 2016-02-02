@@ -2,6 +2,10 @@
 
 *Generated with [ng-poly](https://github.com/dustinspecker/generator-ng-poly/tree/v0.11.5) version 0.11.5*
 
+## Project Meta
+- Begin by forking this repo
+- When you've finished your work, create a pull request for our review
+
 ## Setup
 1. Install [Node.js](http://nodejs.org/)
  - This will also install npm.
