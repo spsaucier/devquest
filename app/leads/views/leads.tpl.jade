@@ -1,3 +1,15 @@
+.pull-right.form-inline
+	.input-group
+		input.form-control(type="text" uib-datepicker-popup="{{leads.dateformat}}" ng-model="leads.filters.date.min" is-open="leads.calMin.opened" min-date="leads.minDate" max-date="leads.maxDate" datepicker-options="leads.dateOptions" ng-required="true" close-text="Close" placeholder="Min Date")
+		span.input-group-btn
+			button.btn.btn-default(type="button" ng-click="leads.openMin()")
+				i.glyphicon.glyphicon-calendar
+	| 
+	input.form-control(type="number" ng-model="leads.filters.guests.min" style="max-width: 120px;" placeholder="Min Guests")
+	|  
+	input.form-control(type="number" ng-model="leads.filters.guests.max" style="max-width: 120px;" placeholder="Max Guests")
+	|  
+	button.btn.btn-default(ng-click="leads.getLeads(leads.filters)") Filter
 h2 Leads
 div(ng-init="leads.getLeads()")
 	div(ng-repeat="lead in leads.data")

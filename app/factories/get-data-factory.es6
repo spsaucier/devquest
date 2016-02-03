@@ -30,8 +30,17 @@
     GetDataBase.getBooking = (id) => {
       return $http.get(base + '/bookings/' + id);
     };
-    GetDataBase.getLeads = () => {
-      return $http.get(base + '/leads/?_sort=start&_order=ASC');
+    GetDataBase.getLeads = (filter) => {
+      let filterString = '';
+      if (filter && filter.guests) {
+        if (filter.guests.min) {
+          filterString += '&guests_gte=' + filter.guests.min;
+        }
+        if (filter.guests.max) {
+          filterString += '&guests_lte=' + filter.guests.max;
+        }
+      }
+      return $http.get(base + '/leads/?_sort=start&_order=ASC' + filterString);
     };
     GetDataBase.getLead = (id) => {
       return $http.get(base + '/leads/' + id);
