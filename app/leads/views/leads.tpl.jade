@@ -1,5 +1,5 @@
 h2 Leads
-div(ng-init="leads.getLeads()")
+div(infinite-scroll="leads.getLeads()" infinite-scroll-distance="1" infinite-scroll-disabled="leads.busy")
 	div(ng-repeat="lead in leads.data")
 		a(data-ui-sref="lead({ id: lead.id })")
 			div(class="pull-right" ng-bind="lead.start | moment: 'MMMM D, YYYY'")

@@ -3,13 +3,19 @@
 
   class LeadsCtrl {
     constructor(GetData, $log) {
-      var vm = this;
-
+      var vm = this,
+          page = 0;
+      vm.data = [];
       vm.getLeads = function () {
-        var promise = GetData.getLeads();
+        var promise = GetData.getLeads(page);
+        vm.busy = true;
         promise.then(
           function (payload) {
-            vm.data = payload.data;
+            console.info(payload.data);
+            // vm.data = payload.data;
+            vm.data = vm.data.concat(payload.data);
+            page++;
+            vm.busy = false;
           },
           function (errorPayload) {
             $log.error('Failure loading leads', errorPayload);

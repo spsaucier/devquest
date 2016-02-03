@@ -21,14 +21,16 @@
     GetDataBase.getLocation = (id) => {
       return $http.get(base + '/locations/' + id);
     };
-    GetDataBase.getBookings = () => {
-      return $http.get(base + '/bookings/?_sort=start&_order=ASC');
+    GetDataBase.getBookings = (page = 0, limit = 50) => {
+      let start = page * limit;
+      return $http.get(base + '/bookings/?_sort=start&_order=ASC&_start=' + start + '&_end=' + (start + limit));
     };
     GetDataBase.getBooking = (id) => {
       return $http.get(base + '/bookings/' + id);
     };
-    GetDataBase.getLeads = () => {
-      return $http.get(base + '/leads/?_sort=start&_order=ASC');
+    GetDataBase.getLeads = (page = 0, limit = 50) => {
+      let start = page * limit;
+      return $http.get(base + '/leads/?_sort=start&_order=ASC&_start=' + start + '&_end=' + (start + limit));
     };
     GetDataBase.getLead = (id) => {
       return $http.get(base + '/leads/' + id);

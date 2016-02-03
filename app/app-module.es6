@@ -10,6 +10,7 @@
     .module('devQuest', [
       'ui.router',
       'ui.bootstrap',
+      'infinite-scroll',
       'home',
       'bookings',
       'leads',
