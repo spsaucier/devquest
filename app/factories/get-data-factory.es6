@@ -21,6 +21,9 @@
     GetDataBase.getLocation = (id) => {
       return $http.get(base + '/locations/' + id);
     };
+    GetDataBase.getLocationNested = (id, entity) => {
+      return $http.get(base + '/locations/' + id + '/' + entity + '?_sort=start&_order=ASC');
+    };
     GetDataBase.getBookings = (page = 0, limit = 50) => {
       let start = page * limit;
       return $http.get(base + '/bookings/?_sort=start&_order=ASC&_start=' + start + '&_end=' + (start + limit));

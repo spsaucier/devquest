@@ -1,10 +1,31 @@
 div(ng-init="location.getLocation()")
-	h2 {{location.data.name}}
-	p 
+	p.pull-right 
 		a(href="{{location.data.website}}" target="_blank") Website
+	h2 {{location.data.name}}
 	h4 Details
 	p {{location.data.details}}
 	address
 		h4 Address
 		p {{location.data.address.streetAddress}}
-		p {{location.data.address.city}} {{location.data.address.state}}, {{location.data.address.zip}}
+			br
+			| {{location.data.address.city}}, {{location.data.address.state}} {{location.data.address.zip}}
+	
+	.panel.panel-default
+		.panel-body
+			h4 Leads
+			div(ng-repeat="lead in location.leads")
+				a(data-ui-sref="lead({ id: lead.id })")
+					div(class="pull-right" ng-bind="lead.start | moment: 'MMMM D, YYYY'")
+					p
+						span(ng-bind="lead.name")
+						
+	.panel.panel-default
+		.panel-body
+			h4 Bookings
+			div(ng-repeat="booking in location.bookings")
+				a(data-ui-sref="booking({ id: booking.id })")
+					div(class="pull-right" ng-bind="booking.start | moment: 'MMMM D, YYYY'")
+					p
+						span(ng-bind="booking.name")
+						span(class="badge color-{{booking.status}}"
+							ng-bind="booking.status")
