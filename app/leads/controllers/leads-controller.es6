@@ -5,15 +5,16 @@
     constructor(GetData, $log, $location) {
       var vm = this,
           moment = require('moment-timezone'),
+          currentSearch = $location.search(),
           first = true;
       vm.filters = {
         date: {
-          min: $location.search().dateMin ? new Date(moment($location.search().dateMin, 'YYYY-MM-DD').format()) : new Date(),
-          max: $location.search().dateMax ? new Date(moment($location.search().dateMax, 'YYYY-MM-DD').format()) : ''
+          min: currentSearch.dateMin ? new Date(moment(currentSearch.dateMin, 'YYYY-MM-DD').format()) : new Date(),
+          max: currentSearch.dateMax ? new Date(moment(currentSearch.dateMax, 'YYYY-MM-DD').format()) : ''
         },
         guests: {
-          min: $location.search().guestsMin || '',
-          max: $location.search().guestsMax || ''
+          min: currentSearch.guestsMin || '',
+          max: currentSearch.guestsMax || ''
         }
       };
       vm.clearFilters = function () {
@@ -22,7 +23,7 @@
         vm.getLeads();
       };
       vm.getLeads = function (filters = vm.filters) {
-        var promise = GetData.getLeads(filters),
+        var promise = GetData.getFilteredList('leads', filters),
             search = $location.search();
 
         if (!first && filters) {
@@ -56,8 +57,6 @@
         first = false;
       };
 
-      vm.minDate = new Date(new Date().valueOf() - 2 * 365 * 24 * 60 * 60 * 1000);
-      vm.maxDate = new Date(new Date().valueOf() + 2 * 365 * 24 * 60 * 60 * 1000);
       vm.calMin = {
         opened: false
       };

@@ -1,19 +1,45 @@
 .pull-right.form-inline
 	.input-group
-		input.form-control(style="max-width: 100px;" type="text" uib-datepicker-popup="{{bookings.dateformat}}" ng-model="bookings.filters.date.min" is-open="bookings.calMin.opened" min-date="bookings.minDate" max-date="bookings.filters.date.max || bookings.maxDate" datepicker-options="bookings.dateOptions" ng-required="true" close-text="Close" placeholder="Min Date")
+		input.form-control(ng-model="bookings.filters.date.min"
+			style="max-width: 100px;"
+			type="text"
+			uib-datepicker-popup="{{bookings.dateformat}}"
+			is-open="bookings.calMin.opened"
+			max-date="bookings.filters.date.max || ''"
+			datepicker-options="bookings.dateOptions"
+			ng-required="true"
+			close-text="Close"
+			placeholder="Min Date")
 		span.input-group-btn
 			button.btn.btn-default(type="button" ng-click="bookings.openMin()")
 				i.glyphicon.glyphicon-calendar
 	| 
 	.input-group
-		input.form-control(style="max-width: 100px;" type="text" uib-datepicker-popup="{{bookings.dateformat}}" ng-model="bookings.filters.date.max" is-open="bookings.calMax.opened" min-date="bookings.filters.date.min || bookings.minDate" max-date="bookings.maxDate" datepicker-options="bookings.dateOptions" ng-required="true" close-text="Close" placeholder="Max Date")
+		input.form-control(ng-model="bookings.filters.date.max"
+			style="max-width: 100px;"
+			type="text"
+			uib-datepicker-popup="{{bookings.dateformat}}"
+			is-open="bookings.calMax.opened"
+			min-date="bookings.filters.date.min || ''"
+			datepicker-options="bookings.dateOptions"
+			ng-required="true"
+			close-text="Close"
+			placeholder="Max Date")
 		span.input-group-btn
 			button.btn.btn-default(type="button" ng-click="bookings.openMax()")
 				i.glyphicon.glyphicon-calendar
 	| 
-	input.form-control(type="text" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="bookings.filters.guests.min" style="max-width: 102px;" placeholder="Min Guests")
+	input.form-control(type="text"
+		onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+		ng-model="bookings.filters.guests.min"
+		style="max-width: 102px;"
+		placeholder="Min Guests")
 	|  
-	input.form-control(type="text" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="bookings.filters.guests.max" style="max-width: 102px;" placeholder="Max Guests")
+	input.form-control(type="text"
+		onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+		ng-model="bookings.filters.guests.max"
+		style="max-width: 102px;"
+		placeholder="Max Guests")
 	|  
 	button.btn.btn-default(ng-click="bookings.clearFilters()") Clear
 	|  
@@ -23,7 +49,7 @@ h2 Bookings
 div(ng-init="bookings.getBookings()")
 	div(ng-repeat="booking in bookings.data")
 		a(data-ui-sref="booking({ id: booking.id })")
-			div(class="pull-right" ng-bind="booking.start | moment: 'MMMM D, YYYY'")
+			div.pull-right(ng-bind="booking.start | moment: 'MMMM D, YYYY'")
 			h3
 				span(ng-bind="booking.name")
 				span(class="badge color-{{booking.status}}"

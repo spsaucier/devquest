@@ -1,19 +1,47 @@
 .pull-right.form-inline
 	.input-group
-		input.form-control(style="max-width: 100px;" type="text" uib-datepicker-popup="{{leads.dateformat}}" ng-model="leads.filters.date.min" is-open="leads.calMin.opened" min-date="leads.minDate" max-date="leads.filters.date.max || leads.maxDate" datepicker-options="leads.dateOptions" ng-required="true" close-text="Close" placeholder="Min Date")
+		input.form-control(ng-model="leads.filters.date.min"
+			style="max-width: 100px;"
+			type="text"
+			uib-datepicker-popup="{{leads.dateformat}}"
+			is-open="leads.calMin.opened"
+			max-date="leads.filters.date.max || ''"
+			datepicker-options="leads.dateOptions"
+			ng-required="true"
+			close-text="Close"
+			placeholder="Min Date")
 		span.input-group-btn
-			button.btn.btn-default(type="button" ng-click="leads.openMin()")
+			button.btn.btn-default(type="button"
+				ng-click="leads.openMin()")
 				i.glyphicon.glyphicon-calendar
 	| 
 	.input-group
-		input.form-control(style="max-width: 100px;" type="text" uib-datepicker-popup="{{leads.dateformat}}" ng-model="leads.filters.date.max" is-open="leads.calMax.opened" min-date="leads.filters.date.min || leads.minDate" max-date="leads.maxDate" datepicker-options="leads.dateOptions" ng-required="true" close-text="Close" placeholder="Max Date")
+		input.form-control(ng-model="leads.filters.date.max"
+			style="max-width: 100px;"
+			type="text"
+			uib-datepicker-popup="{{leads.dateformat}}"
+			is-open="leads.calMax.opened"
+			min-date="leads.filters.date.min || ''"
+			datepicker-options="leads.dateOptions"
+			ng-required="true"
+			close-text="Close"
+			placeholder="Max Date")
 		span.input-group-btn
-			button.btn.btn-default(type="button" ng-click="leads.openMax()")
+			button.btn.btn-default(type="button"
+				ng-click="leads.openMax()")
 				i.glyphicon.glyphicon-calendar
 	| 
-	input.form-control(type="text" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="leads.filters.guests.min" style="max-width: 102px;" placeholder="Min Guests")
+	input.form-control(type="text"
+		onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+		ng-model="leads.filters.guests.min"
+		style="max-width: 102px;"
+		placeholder="Min Guests")
 	|  
-	input.form-control(type="text" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" ng-model="leads.filters.guests.max" style="max-width: 102px;" placeholder="Max Guests")
+	input.form-control(type="text"
+		onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+		ng-model="leads.filters.guests.max"
+		style="max-width: 102px;"
+		placeholder="Max Guests")
 	|  
 	button.btn.btn-default(ng-click="leads.clearFilters()") Clear
 	|  
@@ -22,6 +50,6 @@ h2 Leads
 div(ng-init="leads.getLeads()")
 	div(ng-repeat="lead in leads.data")
 		a(data-ui-sref="lead({ id: lead.id })")
-			div(class="pull-right" ng-bind="lead.start | moment: 'MMMM D, YYYY'")
+			div.pull-right(ng-bind="lead.start | moment: 'MMMM D, YYYY'")
 			h3
 				span(ng-bind="lead.name")

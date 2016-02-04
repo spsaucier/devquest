@@ -5,15 +5,16 @@
     constructor(GetData, $log, $location) {
       var vm = this,
           moment = require('moment-timezone'),
+          currentSearch = $location.search(),
           first = true;
       vm.filters = {
         date: {
-          min: $location.search().dateMin ? new Date(moment($location.search().dateMin, 'YYYY-MM-DD').format()) : new Date(),
-          max: $location.search().dateMax ? new Date(moment($location.search().dateMax, 'YYYY-MM-DD').format()) : new Date(moment(new Date()).add(1, 'months').format())
+          min: currentSearch.dateMin ? new Date(moment(currentSearch.dateMin, 'YYYY-MM-DD').format()) : new Date(),
+          max: currentSearch.dateMax ? new Date(moment(currentSearch.dateMax, 'YYYY-MM-DD').format()) : new Date(moment(new Date()).add(1, 'months').format())
         },
         guests: {
-          min: $location.search().guestsMin || '',
-          max: $location.search().guestsMax || ''
+          min: currentSearch.guestsMin || '',
+          max: currentSearch.guestsMax || ''
         }
       };
       vm.clearFilters = function () {
@@ -22,7 +23,7 @@
         vm.getBookings();
       };
       vm.getBookings = function (filters = vm.filters) {
-        var promise = GetData.getBookings(filters),
+        var promise = GetData.getFilteredList('bookings', filters),
             search = $location.search();
 
         if (!first && filters) {
@@ -56,8 +57,6 @@
         first = false;
       };
 
-      vm.minDate = new Date(new Date().valueOf() - 2 * 365 * 24 * 60 * 60 * 1000);
-      vm.maxDate = new Date(new Date().valueOf() + 2 * 365 * 24 * 60 * 60 * 1000);
       vm.calMin = {
         opened: false
       };

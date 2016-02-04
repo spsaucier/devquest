@@ -10,7 +10,6 @@
     .module('devQuest', [
       'ui.router',
       'ui.bootstrap',
-      'ui.multiselect',
       'home',
       'bookings',
       'leads',
