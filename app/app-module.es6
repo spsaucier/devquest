@@ -10,6 +10,7 @@
     .module('devQuest', [
       'ui.router',
       'ui.bootstrap',
+      'checklist-model',
       'home',
       'bookings',
       'leads',

@@ -31,6 +31,24 @@
 				ng-click="leads.openMax()")
 				i.glyphicon.glyphicon-calendar
 	| 
+	div.btn-group(uib-dropdown is-open="leads.locations.isopen" auto-close="outsideClick")
+		button.btn.btn-default.dropdown-toggle(uib-dropdown-toggle) {{leads.filters.locations.length ? leads.filters.locations.length + ' location' + (leads.filters.locations.length > 1 ? 's ' : ' ') : 'Location '}} 
+			span.caret
+		ul.checklist(uib-dropdown-menu role="menu")
+			li.text-center(role="menuitem")
+				button.btn.btn-default(ng-click="leads.checkAll('locations')")
+					span.glyphicon.glyphicon-ok(aria-hidden="true")
+					|  All
+				|  
+				button.btn.btn-default(ng-click="leads.uncheckAll('locations')")
+					span.glyphicon.glyphicon-remove(aria-hidden="true")
+					|  All
+			li.divider
+			li(ng-repeat="location in leads.locations" role="menuitem")
+				label  
+					input(type="checkbox" checklist-model="leads.filters.locations" checklist-value="location.id")
+					|  {{location.name}}
+	| 
 	input.form-control(type="text"
 		onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
 		ng-model="leads.filters.guests.min"
@@ -43,7 +61,7 @@
 		style="max-width: 102px;"
 		placeholder="Max Guests")
 	|  
-	button.btn.btn-default(ng-click="leads.clearFilters()") Clear
+	button.btn.btn-secondary(ng-click="leads.clearFilters()") Clear
 	|  
 	button.btn.btn-primary(ng-click="leads.getLeads(leads.filters)") Filter
 h2 Leads

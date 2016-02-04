@@ -15,7 +15,8 @@
         guests: {
           min: currentSearch.guestsMin || '',
           max: currentSearch.guestsMax || ''
-        }
+        },
+        locations: currentSearch.locations ? currentSearch.locations.split(',') : []
       };
       vm.clearFilters = function () {
         $location.search({});
@@ -43,6 +44,9 @@
               search.guestsMax = filters.guests.max;
             }
           }
+          if (filters.locations) {
+            search.locations = angular.isArray(filters.locations) ? filters.locations.join(',') : filters.locations;
+          }
           $location.search(search);
         }
 
@@ -56,6 +60,15 @@
         );
         first = false;
       };
+
+      GetData.getLocations().then(
+        function (payload) {
+          vm.locations = payload.data;
+        },
+        function (errorPayload) {
+          $log.error('Failure loading locations', errorPayload);
+        }
+      );
 
       vm.calMin = {
         opened: false
@@ -75,6 +88,13 @@
       };
       vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
       vm.format = vm.formats[0];
+
+      vm.checkAll = function (filterType) {
+        vm.filters[filterType] = angular.copy(vm[filterType]);
+      };
+      vm.uncheckAll = function (filterType) {
+        vm.filters[filterType] = [];
+      };
     }
   }
 
