@@ -24,28 +24,49 @@
     GetDataBase.getLocationNested = (id, entity) => {
       return $http.get(base + '/locations/' + id + '/' + entity + '?_sort=start&_order=ASC');
     };
-    GetDataBase.getBookings = () => {
-      return $http.get(base + '/bookings/?_sort=start&_order=ASC');
+    GetDataBase.getBookings = (filter) => {
+      let filterString = '';
+      if (filter) {
+        if (filter.guests) {
+          if (filter.guests.min) {
+            filterString += '&guests_gte=' + filter.guests.min;
+          }
+          if (filter.guests.max) {
+            filterString += '&guests_lte=' + filter.guests.max;
+          }
+        }
+        if (filter.date) {
+          if (filter.date.min) {
+            filterString += '&start_gte=' + new Date(filter.date.min).valueOf();
+          }
+          if (filter.date.max) {
+            filterString += '&start_lte=' + new Date(filter.date.max).setHours(23, 59, 59, 999).valueOf();
+          }
+        }
+      }
+      return $http.get(base + '/bookings/?_sort=start&_order=ASC' + filterString);
     };
     GetDataBase.getBooking = (id) => {
       return $http.get(base + '/bookings/' + id);
     };
     GetDataBase.getLeads = (filter) => {
       let filterString = '';
-      if (filter && filter.guests) {
-        if (filter.guests.min) {
-          filterString += '&guests_gte=' + filter.guests.min;
+      if (filter) {
+        if (filter.guests) {
+          if (filter.guests.min) {
+            filterString += '&guests_gte=' + filter.guests.min;
+          }
+          if (filter.guests.max) {
+            filterString += '&guests_lte=' + filter.guests.max;
+          }
         }
-        if (filter.guests.max) {
-          filterString += '&guests_lte=' + filter.guests.max;
-        }
-      }
-      if (filter && filter.date) {
-        if (filter.date.min) {
-          filterString += '&start_gte=' + new Date(filter.date.min).valueOf();
-        }
-        if (filter.date.max) {
-          filterString += '&start_lte=' + new Date(filter.date.max).setHours(23, 59, 59, 999).valueOf();
+        if (filter.date) {
+          if (filter.date.min) {
+            filterString += '&start_gte=' + new Date(filter.date.min).valueOf();
+          }
+          if (filter.date.max) {
+            filterString += '&start_lte=' + new Date(filter.date.max).setHours(23, 59, 59, 999).valueOf();
+          }
         }
       }
       return $http.get(base + '/leads/?_sort=start&_order=ASC' + filterString);
