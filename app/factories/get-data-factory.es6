@@ -40,6 +40,14 @@
           filterString += '&guests_lte=' + filter.guests.max;
         }
       }
+      if (filter && filter.date) {
+        if (filter.date.min) {
+          filterString += '&start_gte=' + new Date(filter.date.min).valueOf();
+        }
+        if (filter.date.max) {
+          filterString += '&start_lte=' + new Date(filter.date.max).setHours(23, 59, 59, 999).valueOf();
+        }
+      }
       return $http.get(base + '/leads/?_sort=start&_order=ASC' + filterString);
     };
     GetDataBase.getLead = (id) => {
