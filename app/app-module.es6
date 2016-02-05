@@ -10,12 +10,13 @@
     .module('devQuest', [
       'ui.router',
       'ui.bootstrap',
+      'ui.bootstrap.datetimepicker',
       'home',
       'bookings',
       'leads',
       'locations'
     ])
-    .run(function () {
-
+    .run(function ($rootScope, $location) {
+      $rootScope.location = $location;
     });
 }());

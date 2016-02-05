@@ -18,6 +18,12 @@
         templateUrl: 'locations/views/location.tpl.html',
         controller: 'LocationCtrl',
         controllerAs: 'location'
+      })
+      .state('lead-form', {
+        url: '/locations/:id/lead-form',
+        templateUrl: 'locations/views/lead-form.tpl.html',
+        controller: 'LeadFormCtrl',
+        controllerAs: 'leadForm'
       });
   }
 }());

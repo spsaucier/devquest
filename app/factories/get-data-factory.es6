@@ -36,6 +36,12 @@
     GetDataBase.getLead = (id) => {
       return $http.get(base + '/leads/' + id);
     };
+    GetDataBase.createLead = (leadData) => {
+      return $http.post(base + '/leads/', leadData)
+        .success(function (data, status) {
+          console.info(data, status);
+        });
+    };
     return GetDataBase;
   }
 }());

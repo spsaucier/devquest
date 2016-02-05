@@ -9,6 +9,8 @@ div(ng-init="location.getLocation()")
 		p {{location.data.address.streetAddress}}
 			br
 			| {{location.data.address.city}}, {{location.data.address.state}} {{location.data.address.zip}}
+	p
+		a.btn.btn-primary(data-ui-sref="lead-form({ id: location.data.id })") Location-specific Lead Form
 	
 	.panel.panel-default
 		.panel-body

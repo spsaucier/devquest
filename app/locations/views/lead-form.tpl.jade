@@ -1,0 +1,26 @@
+div(ng-init="leadForm.getLocation()")
+	h1.text-center {{leadForm.data.name}}
+
+	form.form-leadform(ng-submit="leadForm.submit()" ng-if="!leadForm.submitted")
+		h4.form-signin-heading Please submit your event details
+		input.form-control(type="text", name="firstName" ng-model="leadForm.form.firstName", placeholder="First Name" ng-required="true")
+		input.form-control(type="text", name="lastName" ng-model="leadForm.form.lastName", placeholder="Last Name" ng-required="true")
+		input.form-control(type="email", name="email" ng-model="leadForm.form.email", placeholder="Email address" ng-required="true")
+		input.form-control(type="text", name="name" ng-model="leadForm.form.name", placeholder="Event Name" ng-required="true")
+		input.form-control(type="number", name="guests" ng-model="leadForm.form.guests", placeholder="Number of Guests" ng-required="true")
+		.input-group
+			input.form-control(ng-model="leadForm.form.start"
+				datetime-picker="dd MMM yyyy HH:mm"
+				is-open="leadForm.opened"
+				default-time="1:00 pm"
+				ng-required="true"
+				close-text="Close"
+				placeholder="Date")
+			span.input-group-btn
+				button.btn.btn-default(type="button" ng-click="leadForm.open()")
+					i.glyphicon.glyphicon-calendar
+
+		input(type="hidden" ng-model="leadForm.data.id")
+		button.btn.btn-large.btn-primary(type="submit") Submit
+
+	div(ng-bind="leadForm.submitted")
