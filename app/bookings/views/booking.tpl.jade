@@ -17,6 +17,9 @@ div(ng-init="booking.getBooking()")
 		p 
 			span # of Guests: 
 			span(ng-bind="booking.data.guests")
+		p
+			span Location: 
+			a(ui-sref="location({id: lead.data.location.id})" ng-bind="lead.data.location.name")
 
 	div(ng-show="booking.editing")
 		h2(ng-bind="'Editing ' + booking.form.name")

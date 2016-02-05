@@ -13,6 +13,9 @@ div(ng-init="lead.getLead()")
 		p 
 			span # of Guests: 
 			span(ng-bind="lead.data.guests")
+		p
+			span Location: 
+			a(ui-sref="location({id: lead.data.location.id})" ng-bind="lead.data.location.name")
 
 	div(ng-show="lead.editing")
 		h2(ng-bind="'Editing ' + lead.form.name")
