@@ -18,6 +18,7 @@
         );
       };
 
+      // TO DO: Add edit functionality for Status & Location
       vm.edit = function () {
         vm.editing = true;
         vm.form = angular.copy(vm.data);

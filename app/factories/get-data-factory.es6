@@ -45,8 +45,14 @@
     GetDataBase.getLeads = () => {
       return $http.get(base + '/leads/?_sort=start&_order=ASC');
     };
+    GetDataBase.saveLead = (leadData) => {
+      return $http.patch(base + '/leads/' + leadData.id, leadData)
+        .success(function (data, status) {
+          console.info(data, status);
+        });
+    };
     GetDataBase.getLead = (id) => {
-      return $http.get(base + '/leads/' + id);
+      return $http.get(base + '/leads/' + id + '?_expand=location');
     };
     return GetDataBase;
   }

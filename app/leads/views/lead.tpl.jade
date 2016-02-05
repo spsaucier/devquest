@@ -1,12 +1,36 @@
 div(ng-init="lead.getLead()")
-	h2
-		span(ng-bind="lead.data.name")
-	p 
-		span Date: 
-		span(ng-bind="lead.data.start | moment: 'MMMM D, YYYY'")
-	p 
-		span Time: 
-		span(ng-bind="lead.data.start | moment:'h:mma'")
-	p 
-		span # of Guests: 
-		span(ng-bind="lead.data.guests")
+	div(ng-show="!lead.editing")
+		p.pull-right 
+			a.btn.btn-primary(ng-click="lead.edit()") Edit Lead
+		h2
+			span(ng-bind="lead.data.name")
+		p 
+			span Date: 
+			span(ng-bind="lead.data.start | moment: 'MMMM D, YYYY'")
+		p 
+			span Time: 
+			span(ng-bind="lead.data.start | moment:'h:mma'")
+		p 
+			span # of Guests: 
+			span(ng-bind="lead.data.guests")
+
+	div(ng-show="lead.editing")
+		h2(ng-bind="'Editing ' + lead.form.name")
+		form.form-lead(ng-submit="lead.save()" ng-if="!lead.submitted")
+			input.form-control(type="text", name="leadName" ng-model="lead.form.name", placeholder="Lead Name" ng-required="true")
+			input.form-control(type="number", name="guests" ng-model="lead.form.guests", placeholder="# of Guests")
+			.input-group
+				input.form-control(ng-model="lead.form.start"
+					datetime-picker="dd MMM yyyy HH:mm"
+					is-open="lead.startOpened"
+					default-time="1:00 pm"
+					ng-required="true"
+					close-text="Close"
+					placeholder="Start")
+				span.input-group-btn
+					button.btn.btn-default(type="button" ng-click="lead.startOpen()")
+						i.glyphicon.glyphicon-calendar
+			input(type="hidden" ng-model="lead.form.id")
+			button.btn.btn-large.btn-primary(type="submit") Submit
+			|  
+			button.btn.btn-large.btn-default(type="button" ng-click="lead.editing = false") Cancel
