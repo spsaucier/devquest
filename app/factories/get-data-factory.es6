@@ -18,6 +18,12 @@
     GetDataBase.getLocations = () => {
       return $http.get(base + '/locations/');
     };
+    GetDataBase.saveLocation = (locationData) => {
+      return $http.patch(base + '/locations/' + locationData.id, locationData)
+        .success(function (data, status) {
+          console.info(data, status);
+        });
+    };
     GetDataBase.getLocation = (id) => {
       return $http.get(base + '/locations/' + id);
     };

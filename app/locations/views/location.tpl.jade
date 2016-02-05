@@ -1,31 +1,60 @@
 div(ng-init="location.getLocation()")
-	p.pull-right 
-		a(href="{{location.data.website}}" target="_blank") Website
-	h2 {{location.data.name}}
-	h4 Details
-	p {{location.data.details}}
-	address
-		h4 Address
-		p {{location.data.address.streetAddress}}
-			br
-			| {{location.data.address.city}}, {{location.data.address.state}} {{location.data.address.zip}}
-	
-	.panel.panel-default
-		.panel-body
-			h4 Leads
-			div(ng-repeat="lead in location.leads")
-				a(data-ui-sref="lead({ id: lead.id })")
-					div(class="pull-right" ng-bind="lead.start | moment: 'MMMM D, YYYY'")
-					p
-						span(ng-bind="lead.name")
-						
-	.panel.panel-default
-		.panel-body
-			h4 Bookings
-			div(ng-repeat="booking in location.bookings")
-				a(data-ui-sref="booking({ id: booking.id })")
-					div(class="pull-right" ng-bind="booking.start | moment: 'MMMM D, YYYY'")
-					p
-						span(ng-bind="booking.name")
-						span(class="badge color-{{booking.status}}"
-							ng-bind="booking.status")
+	div(ng-show="!location.editing")
+		p.pull-right 
+			a(href="{{location.data.website}}" target="_blank") Website
+			|  
+			a.btn.btn-primary(ng-click="location.edit()") Edit Location
+		h2(ng-bind="location.data.name")
+		h4 Details
+		p(ng-bind="location.data.details")
+		address
+			h4 Address
+			p {{location.data.address.streetAddress}}
+				br
+				| {{location.data.address.city}}, {{location.data.address.state}} {{location.data.address.zip}}
+		
+		.panel.panel-default
+			.panel-body
+				h4 Leads
+				div(ng-repeat="lead in location.leads")
+					a(data-ui-sref="lead({ id: lead.id })")
+						div(class="pull-right" ng-bind="lead.start | moment: 'MMMM D, YYYY'")
+						p
+							span(ng-bind="lead.name")
+							
+		.panel.panel-default
+			.panel-body
+				h4 Bookings
+				div(ng-repeat="booking in location.bookings")
+					a(data-ui-sref="booking({ id: booking.id })")
+						div(class="pull-right" ng-bind="booking.start | moment: 'MMMM D, YYYY'")
+						p
+							span(ng-bind="booking.name")
+							span(class="badge color-{{booking.status}}"
+								ng-bind="booking.status")
+
+	div(ng-show="location.editing")
+		h2(ng-bind="'Editing ' + location.form.name")
+		form.form-location(ng-submit="location.save()" ng-if="!location.submitted")
+			input.form-control(type="text", name="locationName" ng-model="location.form.name", placeholder="Location Name" ng-required="true")
+			input.form-control(type="url", name="website" ng-model="location.form.website", placeholder="Website")
+			textarea.form-control(ng-model="location.form.details" placeholder="Location Details" rows="5")
+			input.form-control(type="text", name="address.streetAddress" ng-model="location.form.address.streetAddress", placeholder="Street Address")
+			input.form-control(type="text", name="address.city" ng-model="location.form.address.city", placeholder="City")
+			input.form-control(type="text", name="address.state" ng-model="location.form.address.state", placeholder="State")
+			input.form-control(type="text", name="address.zip" ng-model="location.form.address.zip", placeholder="Zip/Postcode")
+			//- .input-group
+			//- 	input.form-control(ng-model="location.form.start"
+			//- 		datetime-picker="dd MMM yyyy HH:mm"
+			//- 		is-open="location.opened"
+			//- 		default-time="1:00 pm"
+			//- 		ng-required="true"
+			//- 		close-text="Close"
+			//- 		placeholder="Date")
+			//- 	span.input-group-btn
+			//- 		button.btn.btn-default(type="button" ng-click="location.open()")
+			//- 			i.glyphicon.glyphicon-calendar
+			input(type="hidden" ng-model="location.form.id")
+			button.btn.btn-large.btn-primary(type="submit") Submit
+			|  
+			button.btn.btn-large.btn-default(type="button" ng-click="location.editing = false") Cancel

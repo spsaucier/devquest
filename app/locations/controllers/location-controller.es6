@@ -12,6 +12,7 @@
         promiseLocation.then(
           function (payload) {
             vm.data = payload.data;
+            vm.form = angular.copy(payload.data);
           },
           function (errorPayload) {
             $log.error('Failure loading location', errorPayload);
@@ -33,6 +34,23 @@
             $log.error('Failure loading location bookings', errorPayload);
           }
         );
+      };
+
+      vm.edit = function () {
+        vm.editing = true;
+        vm.form = angular.copy(vm.data);
+      };
+
+      vm.editing = false;
+      vm.save = function () {
+        if (vm.form) {
+          GetData.saveLocation(vm.form).then(
+            function (payload) {
+              $log.info(payload);
+              vm.editing = false;
+            }
+          );
+        }
       };
     }
   }
