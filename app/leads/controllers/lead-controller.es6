@@ -3,7 +3,8 @@
 
   class LeadCtrl {
     constructor($log, GetData, $filter, $stateParams) {
-      let vm = this;
+      let vm = this,
+          _ = require('lodash');
 
       vm.getLead = function () {
         var promise = GetData.getLead($stateParams.id);
@@ -18,7 +19,14 @@
         );
       };
 
-      // TO DO: Add edit functionality for Location
+      GetData.getLocations().then(
+        function (payload) {
+          vm.locations = payload.data;
+        },
+        function (errorPayload) {
+          $log.error('Failure loading locations', errorPayload);
+        }
+      );
       vm.edit = function () {
         vm.editing = true;
         vm.form = angular.copy(vm.data);
@@ -44,7 +52,9 @@
         if (vm.form) {
           GetData.saveLead(vm.form).then(
             function () {
+              let index = _.findIndex(vm.locations, (location) => location.id === vm.form.locationId);
               vm.data = angular.copy(vm.form);
+              vm.data.location.name = vm.locations[index].name;
               vm.editing = false;
             }
           );

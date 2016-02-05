@@ -19,7 +19,7 @@ div(ng-init="booking.getBooking()")
 			span(ng-bind="booking.data.guests")
 		p
 			span Location: 
-			a(ui-sref="location({id: lead.data.location.id})" ng-bind="lead.data.location.name")
+			a(ui-sref="location({id: booking.data.location.id})" ng-bind="booking.data.location.name")
 
 	div(ng-show="booking.editing")
 		h2(ng-bind="'Editing ' + booking.form.name")
@@ -48,6 +48,28 @@ div(ng-init="booking.getBooking()")
 				span.input-group-btn
 					button.btn.btn-default(type="button" ng-click="booking.endOpen()")
 						i.glyphicon.glyphicon-calendar
+
+			p
+				span Location: 
+				div.btn-group(uib-dropdown is-open="booking.locations.isopen" auto-close="outsideClick")
+					button.btn.btn-default.dropdown-toggle(uib-dropdown-toggle ng-bind="booking.locations[booking.form.locationId - 1].name + ' '")
+						span.caret
+					ul.checklist(uib-dropdown-menu role="menu")
+						li(ng-repeat="location in booking.locations | orderBy: 'name'" role="menuitem")
+							label  
+								input(type="radio" ng-model="booking.form.locationId" ng-value="location.id")
+								|  {{location.name}}
+			p
+				span Status: 
+				div.btn-group(uib-dropdown is-open="booking.statuses.isopen" auto-close="outsideClick")
+					button.btn.btn-default.dropdown-toggle(uib-dropdown-toggle) {{booking.form.status ? booking.form.status : 'Status'}} 
+						span.caret
+					ul.checklist(uib-dropdown-menu role="menu")
+						li(ng-repeat="status in booking.statuses" role="menuitem")
+							label  
+								input(type="radio" ng-model="booking.form.status" ng-value="status")
+								|  {{status}}
+
 			input(type="hidden" ng-model="booking.form.id")
 			button.btn.btn-large.btn-primary(type="submit") Submit
 			|  

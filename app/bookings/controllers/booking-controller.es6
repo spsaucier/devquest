@@ -3,7 +3,8 @@
 
   class BookingCtrl {
     constructor($log, GetData, $filter, $stateParams) {
-      let vm = this;
+      let vm = this,
+          _ = require('lodash');
 
       vm.getBooking = function () {
         var promise = GetData.getBooking($stateParams.id);
@@ -18,7 +19,21 @@
         );
       };
 
-      // TO DO: Add edit functionality for Status & Location
+      GetData.getLocations().then(
+        function (payload) {
+          vm.locations = payload.data;
+        },
+        function (errorPayload) {
+          $log.error('Failure loading locations', errorPayload);
+        }
+      );
+      vm.statuses = [
+        'Canceled',
+        'Closed',
+        'Tentative',
+        'Confirmed'
+      ];
+
       vm.edit = function () {
         vm.editing = true;
         vm.form = angular.copy(vm.data);
@@ -44,7 +59,9 @@
         if (vm.form) {
           GetData.saveBooking(vm.form).then(
             function () {
+              let index = _.findIndex(vm.locations, (location) => location.id === vm.form.locationId);
               vm.data = angular.copy(vm.form);
+              vm.data.location.name = vm.locations[index].name;
               vm.editing = false;
             }
           );

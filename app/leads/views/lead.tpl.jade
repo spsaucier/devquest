@@ -33,6 +33,18 @@ div(ng-init="lead.getLead()")
 				span.input-group-btn
 					button.btn.btn-default(type="button" ng-click="lead.startOpen()")
 						i.glyphicon.glyphicon-calendar
+
+			p
+				span Location: 
+				div.btn-group(uib-dropdown is-open="lead.locations.isopen" auto-close="outsideClick")
+					button.btn.btn-default.dropdown-toggle(uib-dropdown-toggle ng-bind="lead.locations[lead.form.locationId - 1].name + ' '")
+						span.caret
+					ul.checklist(uib-dropdown-menu role="menu")
+						li(ng-repeat="location in lead.locations | orderBy: 'name'" role="menuitem")
+							label  
+								input(type="radio" ng-model="lead.form.locationId" ng-value="location.id")
+								|  {{location.name}}
+
 			input(type="hidden" ng-model="lead.form.id")
 			button.btn.btn-large.btn-primary(type="submit") Submit
 			|  

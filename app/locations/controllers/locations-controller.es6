@@ -6,7 +6,7 @@
       var vm = this;
 
       vm.getLocations = function () {
-        var promise = GetData.getLocations();
+        var promise = GetData.getLocations(true);
         promise.then(
           function (payload) {
             vm.data = payload.data;

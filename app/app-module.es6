@@ -11,6 +11,7 @@
       'ui.router',
       'ui.bootstrap',
       'ui.bootstrap.datetimepicker',
+      'checklist-model',
       'home',
       'bookings',
       'leads',

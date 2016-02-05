@@ -1,8 +1,91 @@
+.pull-right.form-inline
+	.input-group
+		input.form-control(ng-model="bookings.filters.date.min"
+			style="max-width: 100px;"
+			type="text"
+			uib-datepicker-popup="{{bookings.dateformat}}"
+			is-open="bookings.calMin.opened"
+			max-date="bookings.filters.date.max || ''"
+			datepicker-options="bookings.dateOptions"
+			ng-required="true"
+			close-text="Close"
+			placeholder="Min Date")
+		span.input-group-btn
+			button.btn.btn-default(type="button" ng-click="bookings.openMin()")
+				i.glyphicon.glyphicon-calendar
+	| 
+	.input-group
+		input.form-control(ng-model="bookings.filters.date.max"
+			style="max-width: 100px;"
+			type="text"
+			uib-datepicker-popup="{{bookings.dateformat}}"
+			is-open="bookings.calMax.opened"
+			min-date="bookings.filters.date.min || ''"
+			datepicker-options="bookings.dateOptions"
+			ng-required="true"
+			close-text="Close"
+			placeholder="Max Date")
+		span.input-group-btn
+			button.btn.btn-default(type="button" ng-click="bookings.openMax()")
+				i.glyphicon.glyphicon-calendar
+	| 
+	div.btn-group(uib-dropdown is-open="bookings.locations.isopen" auto-close="outsideClick")
+		button.btn.btn-default.dropdown-toggle(uib-dropdown-toggle) {{bookings.filters.locations.length ? bookings.filters.locations.length + ' location' + (bookings.filters.locations.length > 1 ? 's ' : ' ') : 'Location '}} 
+			span.caret
+		ul.checklist(uib-dropdown-menu role="menu")
+			li.text-center(role="menuitem")
+				button.btn.btn-default(ng-click="bookings.checkAll('locations')")
+					span.glyphicon.glyphicon-ok(aria-hidden="true")
+					|  All
+				|  
+				button.btn.btn-default(ng-click="bookings.uncheckAll('locations')")
+					span.glyphicon.glyphicon-remove(aria-hidden="true")
+					|  All
+			li.divider
+			li(ng-repeat="location in bookings.locations" role="menuitem")
+				label  
+					input(type="checkbox" checklist-model="bookings.filters.locations" checklist-value="location.id")
+					|  {{location.name}}
+	| 
+	div.btn-group(uib-dropdown is-open="bookings.statuses.isopen" auto-close="outsideClick")
+		button.btn.btn-default.dropdown-toggle(uib-dropdown-toggle) {{bookings.filters.statuses.length ? bookings.filters.statuses.length + ' status' + (bookings.filters.locations.length > 1 ? 'es ' : ' ') : 'Status '}}
+			span.caret
+		ul.checklist(uib-dropdown-menu role="menu")
+			li.text-center(role="menuitem")
+				button.btn.btn-default(ng-click="bookings.checkAll('statuses')")
+					span.glyphicon.glyphicon-ok(aria-hidden="true")
+					|  All
+				|  
+				button.btn.btn-default(ng-click="bookings.uncheckAll('statuses')")
+					span.glyphicon.glyphicon-remove(aria-hidden="true")
+					|  All
+			li.divider
+			li(ng-repeat="status in bookings.statuses" role="menuitem")
+				label  
+					input(type="checkbox" checklist-model="bookings.filters.statuses" checklist-value="status")
+					|  {{status}}
+	| 
+	input.form-control(type="text"
+		onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+		ng-model="bookings.filters.guests.min"
+		style="max-width: 102px;"
+		placeholder="Min Guests")
+	|  
+	input.form-control(type="text"
+		onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+		ng-model="bookings.filters.guests.max"
+		style="max-width: 102px;"
+		placeholder="Max Guests")
+	|  
+	button.btn.btn-secondary(ng-click="bookings.clearFilters()") Clear
+	|  
+	button.btn.btn-primary(ng-click="bookings.getBookings(bookings.filters)") Filter
+
 h2 Bookings
 div(ng-init="bookings.getBookings()")
 	div(ng-repeat="booking in bookings.data")
 		a(data-ui-sref="booking({ id: booking.id })")
-			div(class="pull-right" ng-bind="booking.start | moment: 'MMMM D, YYYY'")
+			div.pull-right(ng-bind="booking.start | moment: 'MMMM D, YYYY'")
 			h3
 				span(ng-bind="booking.name")
 				span(class="badge color-{{booking.status}}"
