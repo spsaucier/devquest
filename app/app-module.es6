@@ -10,6 +10,7 @@
     .module('devQuest', [
       'ui.router',
       'ui.bootstrap',
+      'ui.bootstrap.datetimepicker',
       'home',
       'bookings',
       'leads',

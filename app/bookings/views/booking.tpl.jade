@@ -1,16 +1,51 @@
 div(ng-init="booking.getBooking()")
-	h2
-		span(ng-bind="booking.data.name")
-		span(class="badge color-{{booking.data.status}}"
-			ng-bind="booking.data.status")
-	p 
-		span Date: 
-		span(ng-bind="booking.data.start | moment: 'MMMM D, YYYY'")
-	p 
-		span Time: 
-		span(ng-bind="booking.data.start | moment:'h:mma'")
-		|  &ndash; 
-		span(ng-bind="booking.data.end | moment:'h:mma'")
-	p 
-		span # of Guests: 
-		span(ng-bind="booking.data.guests")
+	div(ng-show="!booking.editing")
+		p.pull-right 
+			a.btn.btn-primary(ng-click="booking.edit()") Edit Booking
+		h2
+			span(ng-bind="booking.data.name")
+			span(class="badge color-{{booking.data.status}}"
+				ng-bind="booking.data.status")
+		p 
+			span Date: 
+			span(ng-bind="booking.data.start | moment: 'MMMM D, YYYY'")
+		p 
+			span Time: 
+			span(ng-bind="booking.data.start | moment:'h:mma'")
+			|  &ndash; 
+			span(ng-bind="booking.data.end | moment:'h:mma'")
+		p 
+			span # of Guests: 
+			span(ng-bind="booking.data.guests")
+
+	div(ng-show="booking.editing")
+		h2(ng-bind="'Editing ' + booking.form.name")
+		form.form-booking(ng-submit="booking.save()" ng-if="!booking.submitted")
+			input.form-control(type="text", name="bookingName" ng-model="booking.form.name", placeholder="Booking Name" ng-required="true")
+			input.form-control(type="number", name="guests" ng-model="booking.form.guests", placeholder="# of Guests")
+			.input-group
+				input.form-control(ng-model="booking.form.start"
+					datetime-picker="dd MMM yyyy HH:mm"
+					is-open="booking.startOpened"
+					default-time="1:00 pm"
+					ng-required="true"
+					close-text="Close"
+					placeholder="Start")
+				span.input-group-btn
+					button.btn.btn-default(type="button" ng-click="booking.startOpen()")
+						i.glyphicon.glyphicon-calendar
+			.input-group
+				input.form-control(ng-model="booking.form.end"
+					datetime-picker="dd MMM yyyy HH:mm"
+					is-open="booking.endOpened"
+					default-date="{{booking.form.start | moment:'YYYY-MM-DD'}}"
+					default-time="{{booking.form.start | moment:'HH:mm a'}}"
+					close-text="Close"
+					placeholder="End")
+				span.input-group-btn
+					button.btn.btn-default(type="button" ng-click="booking.endOpen()")
+						i.glyphicon.glyphicon-calendar
+			input(type="hidden" ng-model="booking.form.id")
+			button.btn.btn-large.btn-primary(type="submit") Submit
+			|  
+			button.btn.btn-large.btn-default(type="button" ng-click="booking.editing = false") Cancel

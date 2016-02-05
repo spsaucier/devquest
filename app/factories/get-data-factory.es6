@@ -33,8 +33,14 @@
     GetDataBase.getBookings = () => {
       return $http.get(base + '/bookings/?_sort=start&_order=ASC');
     };
+    GetDataBase.saveBooking = (bookingData) => {
+      return $http.patch(base + '/bookings/' + bookingData.id, bookingData)
+        .success(function (data, status) {
+          console.info(data, status);
+        });
+    };
     GetDataBase.getBooking = (id) => {
-      return $http.get(base + '/bookings/' + id);
+      return $http.get(base + '/bookings/' + id + '?_expand=location');
     };
     GetDataBase.getLeads = () => {
       return $http.get(base + '/leads/?_sort=start&_order=ASC');

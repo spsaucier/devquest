@@ -43,17 +43,6 @@ div(ng-init="location.getLocation()")
 			input.form-control(type="text", name="address.city" ng-model="location.form.address.city", placeholder="City")
 			input.form-control(type="text", name="address.state" ng-model="location.form.address.state", placeholder="State")
 			input.form-control(type="text", name="address.zip" ng-model="location.form.address.zip", placeholder="Zip/Postcode")
-			//- .input-group
-			//- 	input.form-control(ng-model="location.form.start"
-			//- 		datetime-picker="dd MMM yyyy HH:mm"
-			//- 		is-open="location.opened"
-			//- 		default-time="1:00 pm"
-			//- 		ng-required="true"
-			//- 		close-text="Close"
-			//- 		placeholder="Date")
-			//- 	span.input-group-btn
-			//- 		button.btn.btn-default(type="button" ng-click="location.open()")
-			//- 			i.glyphicon.glyphicon-calendar
 			input(type="hidden" ng-model="location.form.id")
 			button.btn.btn-large.btn-primary(type="submit") Submit
 			|  

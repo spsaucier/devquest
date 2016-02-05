@@ -45,8 +45,8 @@
       vm.save = function () {
         if (vm.form) {
           GetData.saveLocation(vm.form).then(
-            function (payload) {
-              $log.info(payload);
+            function () {
+              vm.data = angular.copy(vm.form);
               vm.editing = false;
             }
           );
