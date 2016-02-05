@@ -29,11 +29,11 @@ html(lang='en' data-ng-app='devQuest')
           ul.nav.navbar-nav
             li(data-ui-sref-active='active')
               a(data-ui-sref='home') Home
-            li(data-ui-sref-active='active')
+            li(ng-class="{active: $root.location.path().indexOf('bookings') !== -1}")
               a(data-ui-sref='bookings') Bookings
-            li(data-ui-sref-active='active')
+            li(ng-class="{active: $root.location.path().indexOf('leads') !== -1}")
               a(data-ui-sref='leads') Leads
-            li(data-ui-sref-active='active')
+            li(ng-class="{active: $root.location.path().indexOf('locations') !== -1}")
               a(data-ui-sref='locations') Locations
 
     .container

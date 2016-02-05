@@ -15,7 +15,7 @@
       'leads',
       'locations'
     ])
-    .run(function () {
-
+    .run(function ($rootScope, $location) {
+      $rootScope.location = $location;
     });
 }());

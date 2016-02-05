@@ -14,7 +14,7 @@
         controllerAs: 'bookings'
       })
       .state('booking', {
-        url: '/booking/:id',
+        url: '/bookings/:id',
         templateUrl: 'bookings/views/booking.tpl.html',
         controller: 'BookingCtrl',
         controllerAs: 'booking'

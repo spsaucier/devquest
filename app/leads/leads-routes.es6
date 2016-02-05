@@ -14,7 +14,7 @@
         controllerAs: 'leads'
       })
       .state('lead', {
-        url: '/lead/:id',
+        url: '/leads/:id',
         templateUrl: 'leads/views/lead.tpl.html',
         controller: 'LeadCtrl',
         controllerAs: 'lead'
