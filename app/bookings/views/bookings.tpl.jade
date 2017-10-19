@@ -1,9 +1,16 @@
 h2 Bookings
+form(name='FilterBookings')
+  label Number of Guests:
+  input(type="number" name="numberGuests" ng-model="bookings.numberGuests")
+  label Status:
+  input(type="text" name="status" ng-model="bookings.statusFilter")
+  label Start Date:
+  button(ng-click="bookings.getBookings()") Filter
 div(ng-init="bookings.getBookings()")
-	div(ng-repeat="booking in bookings.data")
-		a(data-ui-sref="booking({ id: booking.id })")
-			div(class="pull-right" ng-bind="booking.start | moment: 'MMMM D, YYYY'")
-			h3
-				span(ng-bind="booking.name")
-				span(class="badge color-{{booking.status}}"
-					ng-bind="booking.status")
+  div(ng-repeat="booking in bookings.data")
+    a(data-ui-sref="booking({ id: booking.id })")
+      div(class="pull-right" ng-bind="booking.start | moment: 'MMMM D, YYYY'")
+      h3
+        span(ng-bind="booking.name")
+        span(class="badge color-{{booking.status}}"
+        ng-bind="booking.status")
